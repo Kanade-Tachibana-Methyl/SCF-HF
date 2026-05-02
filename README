@@ -1,3 +1,6 @@
+尝试用代码实现SCF-HF以增进对计算的理解，后续考虑尝试DFT和CC
+
+
 Workflow:
 
 Choose basis set → Compute S, T, V, H_core, ERI tensor
