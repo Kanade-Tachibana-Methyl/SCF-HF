@@ -1,0 +1,23 @@
+Workflow:
+
+Choose basis set → Compute S, T, V, H_core, ERI tensor
+         ↓
+Form symmetric orthogonalization matrix X = S^{-1/2}
+         ↓
+Set initial density matrix D (usually zeros or core Hamiltonian guess)
+         ↓
+    [SCF loop begins]
+         ↓
+Construct G matrix: G_{μν} = Σ_{λσ} D_{λσ} [2(μν|λσ) - (μλ|νσ)]
+         ↓
+Build Fock matrix: F = H_core + G
+         ↓
+Diagonalize F' = X^T F X  →  ε and C
+         ↓
+C ← X C
+Compute new density matrix D_new = 2 * C_occ C_occ^T
+         ↓
+Check if Δ_rms(D_new, D_old) converged?
+      No → D_old ← D_new, return to SCF loop start
+      Yes ↓
+Compute electronic energy + nuclear repulsion → Output total energy
